@@ -11,10 +11,7 @@ const refs = {
   countryInfo: document.querySelector('.country-info'),
 };
 
-refs.inputEl.addEventListener(
-  'input',
-  debounce(onInputChange, DEBOUNCE_DELAY)
-);
+refs.inputEl.addEventListener('input', debounce(onInputChange, DEBOUNCE_DELAY));
 
 function onInputChange(evt) {
   const inputValue = evt.target.value.trim();
@@ -27,8 +24,8 @@ function onInputChange(evt) {
 
   fetchCountries(inputValue)
     .then(country => {
-       onSuccess(country);
-       console.log(country);
+      onSuccess(country);
+      console.log(country);
     })
     .catch(error => {
       onError(error);
@@ -90,3 +87,6 @@ function createMarkupForOneCountry(countries) {
   refs.countryInfo.innerHTML = markup;
 }
 
+fetchCountries('ukraine').then(country => {
+  console.log(country);
+});
